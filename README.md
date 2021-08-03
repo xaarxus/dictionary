@@ -1,1 +1,1 @@
-# It's simple DictionaryS
+# It's simple Dictionary
