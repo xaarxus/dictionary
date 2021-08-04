@@ -1,7 +1,7 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const mode = process.env.NODE_ENV;
+const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
   mode,
@@ -9,14 +9,15 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   output: {
-    path: path.join(__dirname, 'dist', 'public'),
-    publicPath: '/assets/',
+    path: path.join(__dirname, 'dist'),
   },
   devServer: {
+    compress: true,
+    historyApiFallback: true,
     open: true,
   },
   plugins: [
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: './server/views/index.html',
     }),
   ],

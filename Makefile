@@ -2,7 +2,7 @@ start:
 	heroku local -f Procfile.dev
 
 start-backend:
-	npx nodemon bin/slack.js
+	npx nodemon server/server.js
 
 start-frontend:
 	npx webpack serve

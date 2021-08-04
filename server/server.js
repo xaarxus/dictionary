@@ -12,11 +12,11 @@ server.use(express.json());
 server.use(cors());
 
 server.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/public/index.html'));
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 server.get('/main.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/public/main.js'));
+    res.sendFile(path.join(__dirname, '../dist/main.js'));
 });
 
 const start = async () => {
