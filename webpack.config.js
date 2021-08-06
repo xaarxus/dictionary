@@ -6,15 +6,15 @@ const mode = process.env.NODE_ENV || 'development';
 module.exports = {
   mode,
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', 'css', 'sass'],
   },
   output: {
+    filename: 'index.js',
     path: path.join(__dirname, 'dist'),
   },
   devServer: {
-    compress: true,
-    historyApiFallback: true,
     open: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,16 +24,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
       },
     ],
   },
