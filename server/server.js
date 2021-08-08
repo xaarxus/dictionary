@@ -1,8 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const authRouter = require('./routers/auth-router');
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import authRouter from './routers/auth-router.js';
 
 const PORT = process.env.PORT;
 

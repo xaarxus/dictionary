@@ -1,16 +1,16 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import * as path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const mode = process.env.NODE_ENV || 'development';
 
-module.exports = {
+export default {
   mode,
   resolve: {
     extensions: ['.js', '.jsx', 'css', 'sass'],
   },
   output: {
     filename: 'index.js',
-    path: path.join(__dirname, 'dist'),
+    path: path.join(path.resolve(path.dirname('')), 'dist'),
   },
   devServer: {
     open: true,

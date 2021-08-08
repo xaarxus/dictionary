@@ -1,6 +1,6 @@
-const tokenSer = require('../service/token_service');
+import tokenSer from '../service/token_service.js';
 
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
     try {
         const authorizationHeader = req.headers.authorization;
         if (!authorizationHeader) {

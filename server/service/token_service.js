@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
 
 class TokenService {
     validateAccessToken(token) {
@@ -28,25 +27,6 @@ class TokenService {
             refreshToken
         };
     }
-
-    async saveToken(nickname, { accessToken, refreshToken }) {
-        const user = await User.findOne({ nickname });
-        user.refreshToken = refreshToken;
-        user.accessToken = accessToken;
-        return user.save();
-    }
-
-    async removeToken(refreshToken) {
-        const user = await User.findOne({ refreshToken });
-        user.refreshToken = '';
-        user.accessToken = '';
-        return user.save();
-    }
-
-    async findToken(refreshToken) {
-        const tokenData = await User.findOne({ refreshToken });
-        return tokenData;
-    }
 }
 
-module.exports = new TokenService;
+export default new TokenService;

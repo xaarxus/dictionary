@@ -1,8 +1,8 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const uuid = require('uuid');
-const mailService = require('./mail_service');
-const tokenService = require('./token_service');
+import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
+import * as uuid from 'uuid';
+import mailService from './mail_service.js';
+import tokenService from './token_service.js';
 
 class UserService {
     async registration(nickname, email, password) {
@@ -19,13 +19,10 @@ class UserService {
     
         const user = await User.create({ nickname, email, password: hashPassword, activationLink });
         await mailService.sendActivationMail(email, `${process.env.API_URL}auth/activate/${activationLink}`);
-
-        const tokens = tokenService.generateTokens({ user });
-        await tokenService.saveToken(nickname, tokens);
+        return { isCreate: true, message: '' };
     }
 
     async activate(activationLink) {
-        console.log(activationLink)
         const user = await User.findOne({ activationLink });
         user.isActivated = true;
         await user.save();
@@ -44,31 +41,8 @@ class UserService {
             return new Error();
         }
         const tokens = tokenService.generateTokens({ user });
-        await tokenService.saveToken(user.nickname, tokens);
     
         return { ...tokens, user: { email: user.email, name: user.nickname, id: user._id } };
-    }
-
-    async logout(refreshToken) {
-        const token = await tokenService.removeToken(refreshToken);
-        return token;
-    }
-
-    async refresh(refreshToken) {
-        if(!refreshToken) {
-            throw ApiError.UnauthorizedError();
-        }
-        const userData = tokenService.validateRefreshToken(refreshToken);
-        const tokenFromDB = await tokenService.findToken(refreshToken);
-        if (!userData || !tokenFromDB) {
-            throw ApiError.UnauthorizedError();
-        }
-        const user = await User.findById(userData.id);
-        const userDto = new UserDto(user);
-        const tokens = tokenService.generateTokens({ ...userDto });
-        await tokenService.saveToken(userDto.id, tokens.refreshToken);
-    
-        return { ...tokens, user: userDto };
     }
 
     async getAllUsers() {
@@ -91,4 +65,4 @@ class UserService {
     }
 }
 
-module.exports = new UserService;
+export default new UserService;

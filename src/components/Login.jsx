@@ -1,29 +1,57 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Login.sass';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import axios from 'axios';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { login } from '../actions/index';
 
-const Login = () => {
-    const nicknameInput = useRef(null);
-    const passwordInput = useRef(null);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(nicknameInput.current.value, passwordInput.current.value)
-    }
-
-    return (
-        <div className="login flex">
-            <h1>Sing In</h1>
-            <hr />
-            <form className="flex" onSubmit={handleSubmit}>
-                <input onClick={(e) => nicknameInput.current.value = e.target.value} ref={nicknameInput} placeholder="nickname" /><br />
-                <input onClick={(e) => passwordInput.current.value = e.target.value} ref={passwordInput} placeholder="password" /><br />
-                <Button type="submit">Sing In</Button>
-            </form>
-            <div className="change-form">If you don't have an account, you can <Link to="/registration">Sing Up</Link></div>
-        </div>
-    );
+const mapStateToProps = (state) => {
+    return { user: state.user };
 };
 
-export default Login;
+const Login = ({ user, dispatch }) => {
+    const [state, setState] = useState('');
+
+    useEffect(() => {
+        if (user.nickname) {
+            setState('login');
+            return;
+        }
+        setState('logout');
+    }, []);
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        onSubmit: async (values) => {
+            const { email, password } = values;
+            const res = await axios.post('http://localhost:5000/auth/login', {
+                email, password
+            });
+            setState('login');
+            dispatch(login({ user: { ...res.data.user, accessToken: res.data.accessToken } }));
+        }
+    });
+
+    return (<>
+        {state === 'login' ? <Redirect to="/" /> :
+            <div className="login flex">
+                <h1>Sing in</h1>
+                <hr />
+                <form className="flex" onSubmit={formik.handleSubmit}>
+                    <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" /><br />
+                    <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" /><br />
+                    <Button type="submit">Continue</Button>
+                </form>
+                <div className="text-center">If you don't have an account, you can <Link className='log-link' to="/registration">Sing Up</Link></div>
+            </div>
+        }
+    </>);
+};
+
+export default connect(mapStateToProps)(Login);

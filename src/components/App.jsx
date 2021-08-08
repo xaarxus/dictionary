@@ -5,6 +5,7 @@ import Registration from './Registration';
 import Main from './Main';
 import NotFound from './NotFound';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route exact path="/" component={Main} />
                 <Route component={NotFound} />
             </Switch>
+            <Footer />
         </Router>
     );
 };

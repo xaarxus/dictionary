@@ -1,4 +1,4 @@
-const userService = require('../service/auth_service');
+import userService from '../service/auth_service.js';
 
 class AuthController {
     async registration(req, res, next) {
@@ -22,7 +22,7 @@ class AuthController {
         }
     }
 
-    async logout(req, res, next) {
+    /*async logout(req, res, next) {
         try {
             const { refreshToken } = req.cookies;
             const token = await userService.logout(refreshToken);
@@ -31,7 +31,7 @@ class AuthController {
         } catch (err) {
             next(err);
         }
-    }
+    }*/
 
     async activate(req, res, next) {
         try {
@@ -65,4 +65,4 @@ class AuthController {
     }
 }
 
-module.exports = new AuthController();
+export default new AuthController();
