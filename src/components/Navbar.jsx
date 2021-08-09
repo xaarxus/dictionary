@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../styles/NavBar.sass';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -22,8 +22,14 @@ const MyNavbar = ({ user, dispatch }) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
+                    </Nav>
+                    <Nav className="me-auto">
                         <Link className='nav-link' to="/dictionary">Dictionary</Link>
                         <Link className='nav-link' to="/search">Search</Link>
+                        <NavDropdown>
+                            <NavDropdown.Item>RU</NavDropdown.Item>
+                            <NavDropdown.Item>EN</NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                     <Nav>
                         <NavDropdown title={user.name || 'anonymous'} id="collasible-nav-dropdown">
@@ -38,6 +44,7 @@ const MyNavbar = ({ user, dispatch }) => {
                                 </>
                             }
                         </NavDropdown>
+                        <Link className='nav-link theme-link' to="/"><i className="bi bi-sun"></i></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
