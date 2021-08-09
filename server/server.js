@@ -4,6 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import authRouter from './routers/auth-router.js';
+import * as path from 'path';
 
 const PORT = process.env.PORT;
 
@@ -13,6 +14,10 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/auth', authRouter);
+
+server.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../dist/index.html'))
+});
 
 const start = async () => {
     try {
