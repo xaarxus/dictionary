@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Dictionary.sass';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { Button, Card, CloseButton } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 
 const mapStateToProps = (state) => {

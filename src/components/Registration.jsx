@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const Registration = () => {
     const [state, setState] = useState('wait');
+    const [message, setMessage] = useState('');
 
 
     const formik = useFormik({
@@ -17,14 +18,23 @@ const Registration = () => {
             repeatPass: ''
         },
         onSubmit: async (values) => {
-            setState('response');
             const { nickname, email, password, repeatPass } = values;
+            if (password !== repeatPass) {
+                setMessage('Passwords must match');
+                return;
+            }
+
+            setState('response');
             const res = await axios.post('http://localhost:5000/auth/registration', {
                 nickname, email, password, repeatPass
             });
             if (res.data.isCreate) {
+                setMessage('');
                 setState('created');
+                return;
             }
+            setState('wait');
+            setMessage(res.data.message);
         }
     });
 
@@ -34,6 +44,7 @@ const Registration = () => {
                 <>
                     <h1>Sing up</h1>
                     <hr />
+                    {message ? <p className='msg'>{message}</p> : null}
                     {state !== 'wait' ?
                         <div className="text-center">
                             <div className="spinner-border text-primary" role="status">
@@ -41,10 +52,10 @@ const Registration = () => {
                             </div>
                         </div> :
                         <form className="flex" onSubmit={formik.handleSubmit}>
-                            <input type="text" value={formik.values.nickname} onChange={formik.handleChange} name="nickname" placeholder="nickname" /><br />
-                            <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" /><br />
-                            <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" /><br />
-                            <input type="password" value={formik.values.repeatPass} onChange={formik.handleChange} name="repeatPass" placeholder="confirm password" /><br />
+                            <input type="text" value={formik.values.nickname} onChange={formik.handleChange} name="nickname" placeholder="nickname" required pattern='\w{3,30}' title='3 to 30 letters' /><br />
+                            <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" required title='email' /><br />
+                            <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" required pattern='\w{5,30}' title='5 to 30 letters' /><br />
+                            <input type="password" value={formik.values.repeatPass} onChange={formik.handleChange} name="repeatPass" placeholder="confirm password" required pattern='\w{5,30}' title='5 to 30 letters' /><br />
                             <Button type="submit">Continue</Button>
                         </form>
                     }

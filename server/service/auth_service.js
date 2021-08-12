@@ -6,13 +6,13 @@ import tokenService from './token_service.js';
 
 class UserService {
     async registration(nickname, email, password) {
-        const candidate = await User.findOne({ email });
+        const candidate = await User.findOne({ nickname });
         if (candidate) {
-            return new Error();
+            return { isCreate: false, message: 'This nickname is already in use' };
         }
-        const candidate2 = await User.findOne({ nickname });
+        const candidate2 = await User.findOne({ email });
         if (candidate2) {
-            return new Error();
+            return { isCreate: false, message: 'This email is already in use' };
         }
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuid.v4();
@@ -31,14 +31,14 @@ class UserService {
     async login(email, password) {
         const user = await User.findOne({ email });
         if (!user) {
-            return new Error();
+            return { message: 'User not found' };
         }
         if (!user.isActivated) {
-            return new Error();
+            return { message: 'User not activated' };
         }
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {
-            return new Error();
+            return { message: 'Wrong password' };
         }
         const tokens = tokenService.generateTokens({ user });
     

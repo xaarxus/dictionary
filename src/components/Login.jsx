@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
 
 const Login = ({ user, dispatch }) => {
     const [state, setState] = useState('');
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         if (user.nickname) {
@@ -33,6 +34,10 @@ const Login = ({ user, dispatch }) => {
             const res = await axios.post('http://localhost:5000/auth/login', {
                 email, password
             });
+            if (res.data.message) {
+                setMessage(res.data.message);
+                return;
+            }
             setState('login');
             dispatch(login({ user: { ...res.data.user, accessToken: res.data.accessToken } }));
         }
@@ -43,6 +48,7 @@ const Login = ({ user, dispatch }) => {
             <div className="login flex">
                 <h1>Sing in</h1>
                 <hr />
+                {message ? <p className='msg'>{message}</p> : null}
                 <form className="flex" onSubmit={formik.handleSubmit}>
                     <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" /><br />
                     <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" /><br />
