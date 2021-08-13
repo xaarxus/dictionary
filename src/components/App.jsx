@@ -8,6 +8,7 @@ import NotFound from './NotFound';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Dictionary from './Dictionary';
+import Module from './Module';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/registration" component={Registration} />
                 <Route exact path="/dictionary" component={Dictionary} />
+                <Route exact path="/dictionary/:id" component={Module} />
                 <Route exact path="/" component={Main} />
                 <Route component={NotFound} />
             </Switch>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Dictionary.sass';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Button, Card } from 'react-bootstrap';
-import axios from 'axios';
+import { createModule, getModules, deleteModule } from '../services/dictionary_service';
 
 const mapStateToProps = (state) => {
     return { user: { ...state.user } };
@@ -15,28 +16,33 @@ const renderTags = (str) => {
 };
 
 const Dictionary = ({ user, dispatch }) => {
-    //if (!user.name) return <Redirect to="/login" />
+    if (!user.name) return <Redirect to="/login" />
     const [showForm, setStatusForm] = useState(false);
-    const [modules, setModules] = useState([{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description'},{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description'},{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description'},{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description'},{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description'},{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description description description'},{id:4, title: 'ssev', tags: 'sdf dsf', description: 'description'}]);
+    const [modules, setModules] = useState([]);
 
     const [inp1, setInp1] = useState('');
     const [inp2, setInp2] = useState('');
     const [inp3, setInp3] = useState('');
 
-    useEffect(() => {
-
-    });
+    useEffect(async () => {
+        const modulesFromAPI = await getModules(user.id);
+        setModules(modulesFromAPI);
+    }, []);
 
     const handleOpenForm = () => {
         setStatusForm(!showForm);
     };
 
+    const delModule = (id) => async () => {
+        await deleteModule(id);
+        const modulesFromAPI = await getModules(user.id);
+        setModules(modulesFromAPI);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:5000/dictionary/addNew', {
-            title: inp1, tags: inp2, description: inp3
-        });
-        setModules((modules) => ([...modules, res.data]));
+        const newModule = await createModule({ title: inp1, tags: inp2, descr: inp3, userId: user.id })
+        setModules((modules) => ([...modules, newModule]));
         setStatusForm(false);
     }
 
@@ -65,15 +71,15 @@ const Dictionary = ({ user, dispatch }) => {
             {modules.length === 0 ? <h6>You haven't created any modules yet.</h6> :
                 <div className="card-items">
                     {modules.map(module => {
-                        const { id, title, tags, description } = module;
+                        const { _id, title, tags, description } = module;
                         return (
-                            <Card key={id} bg="secondary" text="white" style={{ width: '18rem' }} className="mb-2">
+                            <Card key={_id} bg="secondary" text="white" style={{ width: '18rem' }} className="mb-2">
                                 <Card.Header>
                                     <div className="head-card">
                                         {title}
                                         <div>
-                                            <i class="bi bi-book"></i>
-                                            <i class="bi bi-x-square"></i>
+                                            <Link to={`/dictionary/${_id}`}><i className="bi bi-book"></i></Link>
+                                            <i onClick={delModule(_id)} className="bi bi-x-square"></i>
                                         </div>
                                     </div>
                                 </Card.Header>
