@@ -56,7 +56,7 @@ const Registration = () => {
                             <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" required title='email' /><br />
                             <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" required pattern='\w{5,30}' title='5 to 30 letters' /><br />
                             <input type="password" value={formik.values.repeatPass} onChange={formik.handleChange} name="repeatPass" placeholder="confirm password" required pattern='\w{5,30}' title='5 to 30 letters' /><br />
-                            <Button type="submit">Continue</Button>
+                            <Button variant="outline-primary" type="submit">Continue</Button>
                         </form>
                     }
                     <div className="text-center">If you have an account, you can <Link className='log-link' to="/login">Sing In</Link></div>

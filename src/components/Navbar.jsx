@@ -16,7 +16,7 @@ const MyNavbar = ({ user, dispatch }) => {
     };
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
                 <Link className='nav-link' to="/">D-E-W</Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />

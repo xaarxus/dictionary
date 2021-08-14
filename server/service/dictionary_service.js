@@ -28,8 +28,27 @@ class DictionaryService {
 
     async addWord(id, en, ru) {
         const module = await Dictionary.findOne({ _id: id });
-        module.words[en] = ru;
-        module.save();
+        console.log(id)
+        module.words = { ...module.words, [en]: ru };
+        await module.save();
+        
+        const result = await Dictionary.findOne({ _id: id });
+        return result;
+    }
+
+    async deleteWord(word, id) {
+        const module = await Dictionary.findOne({ _id: id });
+        const { words } = module;
+        const filtred = Object.entries(words).reduce((acc, [en, ru]) => {
+            if (en === word) {
+                return acc;
+            }
+            const newAcc = { ...acc, [en]: ru };
+            return newAcc;
+        }, {});
+
+        module.words = filtred;
+        await module.save();
         
         const result = await Dictionary.findOne({ _id: id });
         return result;

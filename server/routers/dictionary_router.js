@@ -16,4 +16,6 @@ router.post('/openModule', dictionaryController.openModule);
 
 router.patch('/addWord', dictionaryController.addWord);
 
+router.patch('/deleteWord', dictionaryController.deleteWord);
+
 export default router;

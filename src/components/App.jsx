@@ -14,6 +14,16 @@ const App = () => {
     return (
         <Router>
             <Navbar />
+            <div className="drops">
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+            </div>
             <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/registration" component={Registration} />

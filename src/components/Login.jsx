@@ -52,7 +52,7 @@ const Login = ({ user, dispatch }) => {
                 <form className="flex" onSubmit={formik.handleSubmit}>
                     <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" /><br />
                     <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" /><br />
-                    <Button type="submit">Continue</Button>
+                    <Button variant="outline-primary" type="submit">Continue</Button>
                 </form>
                 <div className="text-center">If you don't have an account, you can <Link className='log-link' to="/registration">Sing Up</Link></div>
             </div>

@@ -53,8 +53,17 @@ class DictionaryController {
     async addWord(req, res, next) {
         try {
             const { id, en, ru } = req.body;
-            console.log(id, en, ru)
             const module = await dictionaryService.addWord(id, en, ru);
+            res.json(module);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    async deleteWord(req, res, next) {
+        try {
+            const { word, id } = req.body;
+            const module = await dictionaryService.deleteWord(word, id);
             res.json(module);
         } catch (err) {
             next(err);

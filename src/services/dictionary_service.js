@@ -24,7 +24,7 @@ const addNewWord = async (id, en, ru) => {
     return res.data;
 };
 
-const deleteWord = (word, id) => async () => {
+const deleteWord = async (word, id) => {
     const res = await axios.patch('http://localhost:5000/dictionary/deleteWord', { id, word });
     return res.data;
 };

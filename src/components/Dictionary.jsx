@@ -73,13 +73,13 @@ const Dictionary = ({ user, dispatch }) => {
                     {modules.map(module => {
                         const { _id, title, tags, description } = module;
                         return (
-                            <Card key={_id} bg="secondary" text="white" style={{ width: '18rem' }} className="mb-2">
+                            <Card key={_id} border="primary" style={{ width: '18rem' }} className="mb-2">
                                 <Card.Header>
                                     <div className="head-card">
                                         {title}
                                         <div>
                                             <Link to={`/dictionary/${_id}`}><i className="bi bi-book"></i></Link>
-                                            <i onClick={delModule(_id)} className="bi bi-x-square"></i>
+                                            <i onClick={delModule(_id)} className="bi bi-x-lg"></i>
                                         </div>
                                     </div>
                                 </Card.Header>
