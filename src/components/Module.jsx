@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getModule, addNewWord, deleteWord } from '../services/dictionary_service';
+import { connect } from 'react-redux';
 
-const Module = (props) => {
+const mapStateToProps = (state) => {
+    return { user: { ...state.user } };
+};
+
+const Module = ({ user, match }) => {
     const [data, setData] = useState({});
     const [showForm, setStatusForm] = useState(false);
 
@@ -11,7 +16,7 @@ const Module = (props) => {
 
 
     useEffect(async () => {
-        const module = await getModule(props.match.params.id);
+        const module = await getModule(match.params.id);
         setData(module);
     }, []);
 
@@ -38,17 +43,24 @@ const Module = (props) => {
         </div>
     );
 
+    const btnOpenForm = () => {
+        if (showForm) {
+            return renderForm();
+        }
+        return <i onClick={() => setStatusForm(true)} className="bi bi-plus-circle"></i>;
+    };
+
     return (
         <div className="flex flex-center module">
             <h1>{data.title}</h1>
             <p>{data.description}</p>
             <h2>Words:</h2>
-            {showForm ? renderForm() : <i onClick={() => setStatusForm(true)} className="bi bi-plus-circle"></i>}
-            {!data.words ? null : Object.entries(data.words).map(([en, ru]) => {
+            {user.name ? btnOpenForm() : null}
+            {!data.words ? null : Object.entries(data.words).reverse().map(([en, ru]) => {
                 return (
                     <div key={en} className="flex word">
                         <span>{en} - {ru}</span>
-                        <i onClick={delWord(en, data._id)} className="bi bi-trash"></i>
+                        {user.name ? <i onClick={delWord(en, data._id)} className="bi bi-trash"></i> : null}
                     </div>
                 );
             })}
@@ -56,4 +68,4 @@ const Module = (props) => {
     );
 };
 
-export default Module;
+export default connect(mapStateToProps)(Module);

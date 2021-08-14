@@ -10,6 +10,11 @@ const getModules = async (userId) => {
     return res.data;
 };
 
+const getTop5Modules = async () => {
+    const res = await axios.get('http://localhost:5000/dictionary/getTop5Modules');
+    return res.data;
+};
+
 const deleteModule = async (id) => {
     await axios.delete('http://localhost:5000/dictionary/deleteModule', { data: { id } });
 };
@@ -33,6 +38,7 @@ export {
     createModule,
     getModules,
     getModule,
+    getTop5Modules,
     deleteModule,
     addNewWord,
     deleteWord

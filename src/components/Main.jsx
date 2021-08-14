@@ -1,6 +1,26 @@
-import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Carousel, Card, CardGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { getTop5Modules } from '../services/dictionary_service';
+
+const Mdl = ({ _id, title, tags, description }) => {
+    return (
+        <Card border="primary" style={{ width: '18rem' }} className="mb-2">
+            <Card.Header>
+                <div className="head-card">
+                    {title}
+                    <div>
+                        <Link to={`/dictionary/${_id}`}><i className="bi bi-book"></i></Link>
+                    </div>
+                </div>
+            </Card.Header>
+            <Card.Body>
+                <Card.Title>{tags}</Card.Title>
+                <Card.Text>{description}</Card.Text>
+            </Card.Body>
+        </Card>
+    );
+};
 
 const MyCarousel = () => {
     return (
@@ -33,11 +53,21 @@ const MyCarousel = () => {
 }
 
 const Main = () => {
+    const [modules, setModules] = useState([]);
+
+    useEffect(async () => {
+        const modules = await getTop5Modules();
+        setModules(modules);
+    }, []);
+
     return (
         <>
             <div className="h-90vh flex flex-center flex-column">
                 <MyCarousel />
                 <h6>You can use the previously created modules</h6>
+                <CardGroup>
+                    {modules.map(({ _id, title, tags, description }) => <Mdl key={_id} _id={_id} title={title} tags={tags} description={description} />)}
+                </CardGroup>
             </div>
         </>
     );

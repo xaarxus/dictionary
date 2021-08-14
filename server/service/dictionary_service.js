@@ -1,9 +1,10 @@
 import Dictionary from '../models/Dictionary.js';
 
 class DictionaryService {
-    async getAllModules() {
+    async getTop5Modules() {
         const data = await Dictionary.find();
-        return data;
+        const top5 = data.slice(0, 5);
+        return top5;
     }
 
     async getModules(userId) {

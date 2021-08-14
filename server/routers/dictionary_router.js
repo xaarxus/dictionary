@@ -4,7 +4,7 @@ import auth_middleware from '../middlewares/auth_middleware.js';
 
 const router = new Router();
 
-router.get('/getAllModules', dictionaryController.getAllModules);
+router.get('/getTop5Modules', dictionaryController.getTop5Modules);
 
 router.post('/getModules', dictionaryController.getModules);
 

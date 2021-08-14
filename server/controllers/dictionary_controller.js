@@ -1,9 +1,9 @@
 import dictionaryService from '../service/dictionary_service.js';
 
 class DictionaryController {
-    async getAllModules(req, res, next) {
+    async getTop5Modules(req, res, next) {
         try {
-            const data = await dictionaryService.getAllModules();
+            const data = await dictionaryService.getTop5Modules();
             res.json(data);
         } catch (err) {
             next(err);
