@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/Login.sass';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/NavBar.sass';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
