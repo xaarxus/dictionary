@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import axios from 'axios';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { login } from '../actions/index';
@@ -31,7 +30,7 @@ const Login = ({ user, dispatch }) => {
         },
         onSubmit: async (values) => {
             const { email, password } = values;
-            const res = await aloginAxios(email, password);
+            const res = await loginAxios(email, password);
             if (res.data.message) {
                 setMessage(res.data.message);
                 return;
