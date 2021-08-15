@@ -64,8 +64,6 @@ class DictionaryService {
             if (title.includes(value) || tags.includes(value)) return true;
             return false;
         });
-        
-        console.log(filtredModules)
 
         return filtredModules;
     }
