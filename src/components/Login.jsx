@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { login } from '../actions/index';
+import { loginAxios } from '../services/user_service';
 
 const mapStateToProps = (state) => {
     return { user: state.user };
@@ -30,9 +31,7 @@ const Login = ({ user, dispatch }) => {
         },
         onSubmit: async (values) => {
             const { email, password } = values;
-            const res = await axios.post('http://localhost:5000/auth/login', {
-                email, password
-            });
+            const res = await aloginAxios(email, password);
             if (res.data.message) {
                 setMessage(res.data.message);
                 return;

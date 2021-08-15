@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import axios from 'axios';
+import { registrationAxios } from '../services/user_service';
 
 const Registration = () => {
     const [state, setState] = useState('wait');
@@ -24,9 +24,7 @@ const Registration = () => {
             }
 
             setState('response');
-            const res = await axios.post('http://localhost:5000/auth/registration', {
-                nickname, email, password, repeatPass
-            });
+            const res = await registrationAxios(nickname, email, password, repeatPass);
             if (res.data.isCreate) {
                 setMessage('');
                 setState('created');
