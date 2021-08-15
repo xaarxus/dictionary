@@ -9,7 +9,7 @@ const Search = ({ value, show, setShow }) => {
     useEffect(async () => {
         const data = await searchModules(value);
         setReasult(data);
-    }, []);
+    }, [value]);
 
     return (
         <Modal

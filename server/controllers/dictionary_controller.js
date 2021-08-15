@@ -69,6 +69,16 @@ class DictionaryController {
             next(err);
         }
     }
+
+    async searchModules(req, res, next) {
+        try {
+            const { value } = req.body;
+            const module = await dictionaryService.searchModules(value);
+            res.json(module);
+        } catch (err) {
+            next(err);
+        }
+    }
 }
 
 export default new DictionaryController();

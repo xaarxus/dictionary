@@ -54,6 +54,18 @@ class DictionaryService {
         const result = await Dictionary.findOne({ _id: id });
         return result;
     }
+
+    async searchModules(value) {
+        const modules = await Dictionary.find();
+
+        const filtredModules = modules.filter(module => {
+            const { title, tags } = module;
+            if (title.includes(value) || tags.includes(value)) return true;
+            return false;
+        })
+
+        return filtredModules;
+    }
 }
 
 export default new DictionaryService;
