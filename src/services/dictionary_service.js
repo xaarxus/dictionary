@@ -34,6 +34,11 @@ const deleteWord = async (word, id) => {
     return res.data;
 };
 
+const searchModules = async (value) => {
+    const res = await axios.post('http://localhost:5000/dictionary/searchModules', { value });
+    return res.data;
+};
+
 export {
     createModule,
     getModules,
@@ -41,5 +46,6 @@ export {
     getTop5Modules,
     deleteModule,
     addNewWord,
-    deleteWord
+    deleteWord,
+    searchModules
 };

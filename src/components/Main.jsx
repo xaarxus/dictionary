@@ -3,7 +3,7 @@ import { Carousel, Card, CardGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getTop5Modules } from '../services/dictionary_service';
 
-const Mdl = ({ _id, title, tags, description }) => {
+export const Mdl = ({ _id, title, tags, description }) => {
     return (
         <Card border="primary" style={{ width: '18rem' }} className="mb-2">
             <Card.Header>
@@ -52,7 +52,7 @@ const MyCarousel = () => {
     );
 }
 
-const Main = () => {
+export const Main = () => {
     const [modules, setModules] = useState([]);
 
     useEffect(async () => {
@@ -72,5 +72,3 @@ const Main = () => {
         </>
     );
 };
-
-export default Main;
