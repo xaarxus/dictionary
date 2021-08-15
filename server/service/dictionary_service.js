@@ -56,13 +56,16 @@ class DictionaryService {
     }
 
     async searchModules(value) {
+        if (value === '') return [];
         const modules = await Dictionary.find();
 
         const filtredModules = modules.filter(module => {
             const { title, tags } = module;
             if (title.includes(value) || tags.includes(value)) return true;
             return false;
-        })
+        });
+        
+        console.log(filtredModules)
 
         return filtredModules;
     }

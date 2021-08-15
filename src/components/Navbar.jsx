@@ -22,6 +22,10 @@ const MyNavbar = ({ user, dispatch }) => {
         setIValue(e.target.value);
     };
 
+    const openSearch = () => {
+        setShow(true);
+    }
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <ModalSearch value={iValue} show={show} setShow={setShow} />
@@ -31,8 +35,8 @@ const MyNavbar = ({ user, dispatch }) => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <>
-                            <input value={iValue} onChange={handleSearch} />
-                            <span onClick={() => {setShow(true)}} className='nav-link nav-search'><i className="bi bi-search"></i></span>
+                            <input className="nav-search-input" value={iValue} onChange={handleSearch} />
+                            <span onClick={openSearch} className='nav-link nav-search'><i className="bi bi-search"></i></span>
                         </>
                     </Nav>
                     <Nav className="me-auto">
