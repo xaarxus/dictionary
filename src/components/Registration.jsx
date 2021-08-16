@@ -43,7 +43,7 @@ const Registration = () => {
 
     return (
         <div className="login flex">
-            {state === 'created' ? <p>Please confirm your account registration by clicking on the link in the letter that we sent you by mail.</p> :
+            {state === 'created' ? <p>Please confirm your account registration by clicking on the link in the letter that we sent you by mail. The email may have ended up in the SPAM section.</p> :
                 <>
                     <h1>Sing up</h1>
                     <hr />

@@ -55,12 +55,12 @@ const Module = ({ user, match }) => {
             <h1>{data.title}</h1>
             <p>{data.description}</p>
             <h2>Words:</h2>
-            {user.name ? btnOpenForm() : null}
+            {user.id === data.userId ? btnOpenForm() : null}
             {!data.words ? null : Object.entries(data.words).reverse().map(([en, ru]) => {
                 return (
                     <div key={en} className="flex word">
                         <span>{en} - {ru}</span>
-                        {user.name ? <i onClick={delWord(en, data._id)} className="bi bi-trash"></i> : null}
+                        {user.id === data.userId  ? <i onClick={delWord(en, data._id)} className="bi bi-trash"></i> : null}
                     </div>
                 );
             })}
