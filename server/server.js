@@ -27,7 +27,7 @@ server.get('/index.js', (req, res) => {
 
 const start = async () => {
     try {
-        await mongoose.connect('mongodb+srv://salaar:12345@cluster0.5qqg4.mongodb.net/dictionary?retryWrites=true&w=majority', {
+        await mongoose.connect(process.env.MONGODB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true

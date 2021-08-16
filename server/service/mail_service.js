@@ -3,8 +3,8 @@ import nodeoutlook from 'nodejs-nodemailer-outlook';
 const sendMail = (to, link) => {
     nodeoutlook.sendEmail({
         auth: {
-            user: "supp.d-e-w@outlook.com",
-            pass: "qwerty12345"
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASSWORD
         },
         from: 'supp.d-e-w@outlook.com',
         to,
