@@ -26,17 +26,18 @@ const Registration = () => {
             setState('response');
             try {
                 const res = await registrationAxios(nickname, email, password, repeatPass);
+                if (res.data.isCreate) {
+                    setMessage('');
+                    setState('created');
+                    return;
+                }
+                setState('wait');
+                setMessage(res.data.message);
             } catch (err) {
+                console.log(err)
                 setState('wait');
                 setMessage('Unexpected error');
             }
-            if (res.data.isCreate) {
-                setMessage('');
-                setState('created');
-                return;
-            }
-            setState('wait');
-            setMessage(res.data.message);
         }
     });
 
