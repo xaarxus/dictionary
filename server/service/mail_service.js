@@ -16,7 +16,7 @@ const sendMail = (to, link) => {
                 <a href="${link}">${link}</a>
             </div>
         `
-    })
+    });
 };
 
 export default sendMail;
