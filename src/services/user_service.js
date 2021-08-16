@@ -8,7 +8,7 @@ const loginAxios = async (email, password) => {
 };
 
 const registrationAxios = async (nickname, email, password, repeatPass) => {
-    const res = await axios.post('https://app-dicti.herokuapp.com/auth/registration', {
+    const res = await axios.post('http://localhost:5000/auth/registration', {
         nickname, email, password, repeatPass
     });
     return res;

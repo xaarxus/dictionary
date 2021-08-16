@@ -1,30 +1,22 @@
-import nodemailer from 'nodemailer';
+import nodeoutlook from 'nodejs-nodemailer-outlook';
 
-class MailService {
-    constructor() {
-        this.transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD
-            }
-        });
-    }
+const sendMail = (to, link) => {
+    nodeoutlook.sendEmail({
+        auth: {
+            user: "supp.d-e-w@outlook.com",
+            pass: "qwerty12345"
+        },
+        from: 'supp.d-e-w@outlook.com',
+        to,
+        subject: `Активация aккаунта на ${process.env.API_URL}`,
+        text: '',
+        html: `
+            <div>
+                <h1>Для активации перейдите по ссылке</h1>
+                <a href="${link}">${link}</a>
+            </div>
+        `
+    })
+};
 
-    async sendActivationMail(to, link) {
-        await this.transporter.sendMail({
-            from: process.env.SMTP_USER,
-            to,
-            subject: 'Активация aккаунта',
-            text: '',
-            html: `
-                <div>
-                    <h1>Для активации перейдите по ссылке</h1>
-                    <a href="${link}">${link}</a>
-                </div>
-            `
-        });
-    }
-}
-
-export default new MailService;
+export default sendMail;
