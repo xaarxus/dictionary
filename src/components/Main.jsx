@@ -46,6 +46,7 @@ const MyCarousel = () => {
                     <p>Registered users can customize modules for themselves.</p>
                     <Link  className="main-link" to='/registration'>Sing up</Link>
                     <p>and start improving your English every day</p>
+                    <p>You can add new words only to your modules</p>
                 </div>
             </Carousel.Item>
         </Carousel>

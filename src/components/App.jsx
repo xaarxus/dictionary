@@ -22,6 +22,10 @@ const App = () => {
                 <div className="drop" />
                 <div className="drop" />
                 <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
+                <div className="drop" />
             </div>
             <Switch>
                 <Route exact path="/login" component={Login} />
