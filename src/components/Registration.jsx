@@ -55,10 +55,10 @@ const Registration = () => {
                             </div>
                         </div> :
                         <form className="flex" onSubmit={formik.handleSubmit}>
-                            <input type="text" value={formik.values.nickname} onChange={formik.handleChange} name="nickname" placeholder="nickname" required pattern='\w{3,30}' title='3 to 30 letters' /><br />
-                            <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="email" required title='email' /><br />
-                            <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="password" required pattern='\w{5,30}' title='5 to 30 letters' /><br />
-                            <input type="password" value={formik.values.repeatPass} onChange={formik.handleChange} name="repeatPass" placeholder="confirm password" required pattern='\w{5,30}' title='5 to 30 letters' /><br />
+                            <input type="text" value={formik.values.nickname} onChange={formik.handleChange} name="nickname" placeholder="Nickname" required pattern="\w{3,30}" title="3 to 30 letters" /><br />
+                            <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="Email" required title="email" /><br />
+                            <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="Password" required pattern="\w{5,30}" title="5 to 30 letters" /><br />
+                            <input type="password" value={formik.values.repeatPass} onChange={formik.handleChange} name="repeatPass" placeholder="The password again" required pattern="\w{5,30}" title="5 to 30 letters" /><br />
                             <Button variant="outline-primary" type="submit">Continue</Button>
                         </form>
                     }

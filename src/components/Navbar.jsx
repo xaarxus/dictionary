@@ -34,21 +34,16 @@ const MyNavbar = ({ user, dispatch }) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
+                    </Nav>
+                    <Nav className="me-auto">
+                        <Link className='nav-link' to="/dictionary">Dictionary</Link>
                         <>
                             <input className="nav-search-input" value={iValue} onChange={handleSearch} />
                             <span onClick={openSearch} className='nav-link nav-search'><i className="bi bi-search"></i></span>
                         </>
                     </Nav>
-                    <Nav className="me-auto">
-                        <Link className='nav-link' to="/dictionary">Dictionary</Link>
-                    </Nav>
                     <Nav>
-                        <Link className='nav-link theme-link' to="/"><i className="bi bi-sun"></i></Link>
-                        <NavDropdown>
-                            <NavDropdown.Item>RU</NavDropdown.Item>
-                            <NavDropdown.Item>EN</NavDropdown.Item>
-                        </NavDropdown>
-                        <NavDropdown title={user.name || 'anonymous'} id="collasible-nav-dropdown">
+                        <NavDropdown title={user.name || <i className="bi bi-person-circle"></i>} id="collasible-nav-dropdown">
                             {!user.name ? 
                                 <Link className='nav-link-drop' to="/login">Sing In</Link> :
                                 <Link className='nav-link-drop' onClick={handleLogout} to="/">Logout</Link>

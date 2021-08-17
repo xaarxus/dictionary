@@ -14,7 +14,7 @@ const renderTags = (str) => {
     return <div className="flex-wrap flex flex-center" >{tags.map(tag => <span className="span-badge" key={tag}>{tag}</span>)}</div>
 };
 
-const Dictionary = ({ user, dispatch }) => {
+const Dictionary = ({ user }) => {
     if (!user.name) return <Redirect to="/login" />
     const [showForm, setStatusForm] = useState(false);
     const [modules, setModules] = useState([]);

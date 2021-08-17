@@ -37,7 +37,7 @@ const MyCarousel = () => {
                         <Link className="main-link" to="/login"> login</Link>
                     </p>
                     <p>
-                        You can use <Link className="main-link" to="/search">search</Link> to find the dictionary you want
+                        You can use search to find the dictionary you want
                     </p>
                 </div>
             </Carousel.Item>

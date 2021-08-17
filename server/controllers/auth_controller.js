@@ -22,17 +22,6 @@ class AuthController {
         }
     }
 
-    /*async logout(req, res, next) {
-        try {
-            const { refreshToken } = req.cookies;
-            const token = await userService.logout(refreshToken);
-            res.clearCookie('refreshToken');
-            return res.json(token);
-        } catch (err) {
-            next(err);
-        }
-    }*/
-
     async activate(req, res, next) {
         try {
             const activationLink = req.params.link;
@@ -49,16 +38,6 @@ class AuthController {
             const token = await userService.refresh(refreshToken);
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             return res.json(token);
-        } catch (err) {
-            next(err);
-        }
-    }
-
-    async deleteUser(req, res, next) {
-        try {
-            const { email } = req.body;
-            const users = await userService.deleteUser(email);
-            return res.json(users);
         } catch (err) {
             next(err);
         }

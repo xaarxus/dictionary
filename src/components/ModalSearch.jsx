@@ -15,13 +15,14 @@ const Search = ({ value, show, setShow }) => {
         <Modal
             show={show}
             onHide={() => setShow(false)}
-            dialogClassName="modal-80w"
+            dialogClassName="modal-90w"
             aria-labelledby="search-modal"
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="search-modal">
-                    Search results
+                    <span>Search results</span>
                 </Modal.Title>
+                <i onClick={() => setShow(false)} className="bi bi-x"></i>
             </Modal.Header>
             <Modal.Body>
                 {resultSearch.length === 0 ? <p>Nothing found</p> :
