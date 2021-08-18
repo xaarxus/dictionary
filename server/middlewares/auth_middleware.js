@@ -12,7 +12,7 @@ export default (req, res, next) => {
             return next(new Error());
         }
 
-        const userData = tokenSer.validateAccessToken(accessToken);
+        const userData = tokenSer.validateToken(accessToken, 'access');
         if (!userData) {
             return next(new Error());
         }

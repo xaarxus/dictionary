@@ -44,25 +44,6 @@ class UserService {
     
         return { ...tokens, user: { email: user.email, name: user.nickname, id: user._id } };
     }
-
-    async getAllUsers() {
-        const users = await User.find();
-        return users;
-    }
-
-    async deleteUser(email) {
-        await User.deleteOne({ email });
-        const users = await User.find();
-        return users;
-    }
-
-    async setRole(email) {
-        const user = await User.findOne({ email });
-        user.role = user.role === 'admin' ? 'user' : 'admin';
-        user.save();
-        const users = await User.find();
-        return users;
-    }
 }
 
 export default new UserService;

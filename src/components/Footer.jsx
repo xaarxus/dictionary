@@ -1,11 +1,14 @@
 import React from 'react';
 
 const Footer = () => {
+    const links = [
+        ['https://t.me/newsalaar', <i className="bi bi-telegram"></i>],
+        ['https://www.facebook.com/profile.php?id=100017227802976', <i className="bi bi-facebook"></i>],
+        ['mailto:keyshet@gmail.com', <i className="bi bi-envelope"></i>]
+    ]
     return (
         <div className="footer flex flex-center">
-            <p className="p-15 color-dark"><a href="https://t.me/newsalaar" target="_blank"><i className="bi bi-telegram"></i></a></p>
-            <p className="p-15 color-dark"><a href="https://www.facebook.com/profile.php?id=100017227802976" target="_blank"><i className="bi bi-facebook"></i></a></p>
-            <p className="p-15 color-dark"><a href="mailto:keyshet@gmail.com" target="_blank"><i className="bi bi-envelope"></i></a></p>
+            {links.map(([link, icon]) => <p key={link} className="p-15"><a href={link} target="_blank">{icon}</a></p>)}
         </div>
     );
 };
