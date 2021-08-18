@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { registrationAxios } from '../services/user_service';
 
@@ -39,13 +39,13 @@ const Registration = () => {
                 <h1>Sing up</h1><hr />
                 {message ? <p className='msg'>{message}</p> : null}
                 {state !== 'wait' ? <div className="text-center"><div className="spinner-border text-primary" role="status"><span className="sr-only"></span></div> </div> :
-                    <form className="flex" onSubmit={async (e) => submit(e, { nickname, email, password, repeatPass }, setState, setMessage)}>
-                        <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Nickname" required pattern="\w{3,30}" title="3 to 30 letters" /><br />
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required title="email" /><br />
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required pattern="\w{5,30}" title="5 to 30 letters" /><br />
-                        <input type="password" value={repeatPass} onChange={(e) => setRepeatPass(e.target.value)} placeholder="The password again" required pattern="\w{5,30}" title="5 to 30 letters" /><br />
+                    <Form className="flex" onSubmit={async (e) => submit(e, { nickname, email, password, repeatPass }, setState, setMessage)}>
+                        <Form.Control type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Nickname" required pattern="\w{3,30}" title="3 to 30 letters" /><br />
+                        <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required title="email" /><br />
+                        <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required pattern="\w{5,30}" title="5 to 30 letters" /><br />
+                        <Form.Control type="password" value={repeatPass} onChange={(e) => setRepeatPass(e.target.value)} placeholder="The password again" required pattern="\w{5,30}" title="5 to 30 letters" /><br />
                         <Button variant="outline-primary" type="submit">Continue</Button>
-                    </form>
+                    </Form>
                 }
                 <div className="text-center">If you have an account, you can <Link className='log-link' to="/login">Sing In</Link></div>
             </>

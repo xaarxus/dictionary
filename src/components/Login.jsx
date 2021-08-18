@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { Redirect } from 'react-router';
@@ -46,11 +46,11 @@ const Login = ({ user, dispatch }) => {
                 <h1>Sing in</h1>
                 <hr />
                 {message ? <p className='msg'>{message}</p> : null}
-                <form className="flex" onSubmit={formik.handleSubmit}>
-                    <input type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="Email" required /><br />
-                    <input type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="Password" required /><br />
+                <Form className="flex" onSubmit={formik.handleSubmit}>
+                    <Form.Control type="email" value={formik.values.email} onChange={formik.handleChange} name="email" placeholder="Email" required /><br />
+                    <Form.Control type="password" value={formik.values.password} onChange={formik.handleChange} name="password" placeholder="Password" required /><br />
                     <Button variant="outline-primary" type="submit">Continue</Button>
-                </form>
+                </Form>
                 <div className="text-center">If you don't have an account, you can <Link className='log-link' to="/registration">Sing Up</Link></div>
             </div>
         }
