@@ -28,17 +28,9 @@ const MyCarousel = () => {
             <Carousel.Item>
                 <div className="item-carousel flex flex-center flex-column">
                     <h3>This is a simple dictionary</h3>
-                    <p>
-                        If you want to add your own words or create your own 
-                        module for learning new words,
-                    </p>
-                    <p>
-                        then you need to 
-                        <Link className="main-link" to="/login"> login</Link>
-                    </p>
-                    <p>
-                        You can use search to find the dictionary you want
-                    </p>
+                    <p>If you want to add your own words or create your own module for learning new words,</p>
+                    <p>then you need to <Link className="main-link" to="/login"> login</Link></p>
+                    <p>You can use search to find the dictionary you want</p>
                 </div>
             </Carousel.Item>
             <Carousel.Item>

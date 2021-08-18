@@ -46,17 +46,15 @@ const Dictionary = ({ user }) => {
     }
 
     const renderForm = () => {
-        return (<>
-            <hr />
-                <h3>Create new module</h3>
-                <form onSubmit={handleSubmit} className="flex flex-center">
-                        <input value={inp1} onChange={(e) => setInp1(e.target.value)} className="input-form-create" placeholder="Module name" required />
-                        {inp2 ? renderTags(inp2) : null}
-                        <input value={inp2} onChange={(e) => setInp2(e.target.value)} className="input-form-create" placeholder="Tags" required />
-                        <textarea value={inp3} onChange={(e) => setInp3(e.target.value)} className="area-form-create" placeholder="Short description" />
-                    <button type="submit" className="add-module-btn">Add</button>
-                </form>
-            <hr />
+        return (<><hr />
+            <h3>Create new module</h3>
+            <form onSubmit={handleSubmit} className="flex flex-center">
+                <input value={inp1} onChange={(e) => setInp1(e.target.value)} className="input-form-create" placeholder="Module name" required />
+                {inp2 ? renderTags(inp2) : null}
+                <input value={inp2} onChange={(e) => setInp2(e.target.value)} className="input-form-create" placeholder="Tags" required />
+                <textarea value={inp3} onChange={(e) => setInp3(e.target.value)} className="area-form-create" placeholder="Short description" />
+                <button type="submit" className="add-module-btn">Add</button>
+            </form> <hr />
         </>)
     }
 

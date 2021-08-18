@@ -14,18 +14,10 @@ const App = () => {
         <Router>
             <Navbar />
             <div className="drops">
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
-                <div className="drop" />
+                <div className="drop" /><div className="drop" /><div className="drop" />
+                <div className="drop" /><div className="drop" /><div className="drop" />
+                <div className="drop" /><div className="drop" /><div className="drop" />
+                <div className="drop" /><div className="drop" /><div className="drop" />
             </div>
             <Switch>
                 <Route exact path="/login" component={Login} />
