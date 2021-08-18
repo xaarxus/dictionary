@@ -17,12 +17,11 @@ server.use(cors());
 server.use('/auth', authRouter);
 server.use('/dictionary', dictionaryRouter);
 
-server.get('/', (req, res) => {
+server.get('*', (req, res) => {
+    if (req.path === '/index.js') {
+        return res.sendFile(path.resolve(path.dirname(''), './dist/index.js'));
+    }
     res.sendFile(path.resolve(path.dirname(''), './dist/index.html'))
-});
-
-server.get('/index.js', (req, res) => {
-    res.sendFile(path.resolve(path.dirname(''), './dist/index.js'))
 });
 
 const start = async () => {

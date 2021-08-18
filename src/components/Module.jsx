@@ -10,10 +10,8 @@ const Module = ({ user, match }) => {
     const [data, setData] = useState({});
     const [showForm, setStatusForm] = useState(false);
 
-    
     const [en, setEn] = useState('');
     const [ru, setRu] = useState('');
-
 
     useEffect(async () => {
         const module = await getModule(match.params.id);
