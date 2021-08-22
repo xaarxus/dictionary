@@ -27,12 +27,7 @@ const Search = ({ value, show, setShow }) => {
       <Modal.Body>
         {resultSearch.length === 0 ? <p>Nothing found</p>
           : resultSearch.map((module) => {
-            const {
-              _id,
-              title,
-              tags,
-              description,
-            } = module;
+            const { _id, title, tags, description } = module;
             return <Mdl key={_id} _id={_id} title={title} tags={tags} description={description} />;
           })}
       </Modal.Body>

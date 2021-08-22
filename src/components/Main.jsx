@@ -58,17 +58,15 @@ export const Main = () => {
   }, []);
 
   return (
-    <>
-      <div className="h-90vh flex flex-center flex-column">
-        <MyCarousel />
-        <h6>You can use the previously created modules</h6>
-        <CardGroup>
-          {modules.map((module) => {
-            const { _id, title, tags, description } = module;
-            return <Mdl key={_id} _id={_id} title={title} tags={tags} description={description} />;
-          })}
-        </CardGroup>
-      </div>
-    </>
+    <div className="h-90vh flex flex-center flex-column">
+      <MyCarousel />
+      <h6>You can use the previously created modules</h6>
+      <CardGroup>
+        {modules.map((module) => {
+          const { _id, title, tags, description } = module;
+          return <Mdl key={_id} _id={_id} title={title} tags={tags} description={description} />;
+        })}
+      </CardGroup>
+    </div>
   );
 };
