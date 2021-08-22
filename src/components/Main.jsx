@@ -64,12 +64,7 @@ export const Main = () => {
         <h6>You can use the previously created modules</h6>
         <CardGroup>
           {modules.map((module) => {
-            const {
-              _id,
-              title,
-              tags,
-              description,
-            } = module;
+            const { _id, title, tags, description } = module;
             return <Mdl key={_id} _id={_id} title={title} tags={tags} description={description} />;
           })}
         </CardGroup>
