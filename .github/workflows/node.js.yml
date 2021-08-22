@@ -1,0 +1,16 @@
+name: test ESlint
+
+on:
+  push:
+    branches: 
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install-deps
+        run: make install
+      - name: ESlint
+        run: make lint
