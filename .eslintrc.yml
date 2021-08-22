@@ -1,0 +1,48 @@
+---
+
+root: true
+
+plugins:
+  - functional
+
+extends:
+  - airbnb
+  - "plugin:functional/external-recommended"
+  - "plugin:functional/recommended"
+
+parser: babel-eslint
+
+env:
+  browser: true
+  node: true
+
+settings:
+  import/resolver:
+    -node
+    -webpack
+
+rules:
+  import/no-useless-path-segments: 0
+  import/no-named-as-default-member: 0
+  import/no-named-as-default: 0
+  import/no-cycle: 0
+  import/no-self-import: 0
+  import/order: 0
+  import/no-duplicates: 0
+  import/named: 0
+  import/no-extraneous-dependencies: 0
+  import/no-unresolved: 0
+  import/extensions: 0
+  react/prop-types: 0
+  no-console: 0
+  jsx-a11y/no-static-element-interactions: 0
+  jsx-a11y/click-events-have-key-events: 0
+  functional/no-conditional-statement: 0
+  functional/no-expression-statement: 0
+  functional/immutable-data: 0
+  functional/functional-parameters: 0
+  functional/no-try-statement: 0
+  functional/no-throw-statement: 0
+  functional/no-class: 0
+  no-underscore-dangle: 0
+  object-curly-newline: 0

@@ -9,27 +9,33 @@ import Footer from './Footer';
 import Dictionary from './Dictionary';
 import Module from './Module';
 
-const App = () => {
-    return (
-        <Router>
-            <Navbar />
-            <div className="drops">
-                <div className="drop" /><div className="drop" /><div className="drop" />
-                <div className="drop" /><div className="drop" /><div className="drop" />
-                <div className="drop" /><div className="drop" /><div className="drop" />
-                <div className="drop" /><div className="drop" /><div className="drop" />
-            </div>
-            <Switch>
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/registration" component={Registration} />
-                <Route exact path="/dictionary" component={Dictionary} />
-                <Route exact path="/dictionary/:id" component={Module} />
-                <Route exact path="/" component={Main} />
-                <Route component={NotFound} />
-            </Switch>
-            <Footer />
-        </Router>
-    );
-};
+const App = () => (
+  <Router>
+    <Navbar />
+    <div className="drops">
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+      <div className="drop" />
+    </div>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/registration" component={Registration} />
+      <Route exact path="/dictionary" component={Dictionary} />
+      <Route exact path="/dictionary/:id" component={Module} />
+      <Route exact path="/" component={Main} />
+      <Route component={NotFound} />
+    </Switch>
+    <Footer />
+  </Router>
+);
 
 export default App;
