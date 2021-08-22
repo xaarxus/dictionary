@@ -15,3 +15,6 @@ build:
 
 deploy:
 	git push heroku
+
+lint:
+	npx eslint .
