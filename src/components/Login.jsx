@@ -54,7 +54,7 @@ const Login = ({ user, dispatch }) => {
           </Form>
           <div className="text-center">
             If you don&apos;t have an account, you can
-            <Link className="log-link" to="/registration">Sing Up</Link>
+            <Link className="log-link" to="/registration"> Sing Up</Link>
           </div>
         </div>
       )}
